@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConectandoComJDBC {
 	public static void main(String[] args) throws SQLException {
 		
-		String url = "jdbc:mysql://localhost:3306";
+		String url = "jdbc:mysql://localhost:3306?VerifyServerCertificate=false&useSSL=true";
 		String usuario = "[informar usuario aqui]";
 		String senha = "[informar senha aqui]";
 		
