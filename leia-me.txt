@@ -1,0 +1,6 @@
+CREATE DATABASE base_de_teste_JDBC;
+use base_de_teste_JDBC;
+
+CREATE TABLE cadastro_de_itens (
+    nome VARCHAR(255) NOT NULL
+)

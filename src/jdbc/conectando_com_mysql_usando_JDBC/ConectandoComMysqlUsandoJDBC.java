@@ -1,10 +1,10 @@
-package jdbc;
+package jdbc.conectando_com_mysql_usando_JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConectandoComJDBC {
+public class ConectandoComMysqlUsandoJDBC {
 	public static void main(String[] args) throws SQLException {
 		
 		String url = "jdbc:mysql://localhost:3306?VerifyServerCertificate=false&useSSL=true";
