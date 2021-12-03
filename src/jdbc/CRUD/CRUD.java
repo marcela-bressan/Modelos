@@ -32,6 +32,7 @@ public class CRUD {
 	}
 	
 	/*Métodos Construtores*/
+	
 	//Default
 	public CRUD(){
 		
@@ -42,10 +43,10 @@ public class CRUD {
 	}
 	
 	//Secundário
-		public CRUD(int id, String nome) {
-			setId(id);
-			setNome(nome);
-		}
+	public CRUD(int id, String nome) {
+		setId(id);
+		setNome(nome);
+	}
 
 	/*Métodos de Acesso à Manipulação (Model)*/	
 	
@@ -67,7 +68,6 @@ public class CRUD {
 		
 	}
 	
-	//Inserir um Registro na Tabela
 	public void InserirUmRegistro(String nome) throws SQLException {
 		
 		System.out.println("\nINCLUINDO NOVO REGISTRO PARA NOME: "+nome);
@@ -78,30 +78,27 @@ public class CRUD {
 		consultarTodosOsRegistros();
 		
 	}
-
-	//Incluir método Iserir Muitos Registros na Tabela
 	
 	public void consultarTodosOsRegistros() throws SQLException {
-			System.out.println("\n***TABELA REGISTROS***");
-			String SQL = "SELECT * FROM registros";
-			PreparedStatement pstmt = conexao.prepareStatement(SQL);
-			ResultSet resultado = pstmt.executeQuery();
+		System.out.println("\n***TABELA REGISTROS***");
+		String SQL = "SELECT * FROM registros";
+		PreparedStatement pstmt = conexao.prepareStatement(SQL);
+		ResultSet resultado = pstmt.executeQuery();
+		
+		List<CRUD> result = new ArrayList<>();
+		
+		while (resultado.next()){
+			 int id = resultado.getInt("id");
+			 String nome_ = resultado.getString("nome");
+			 result.add(new CRUD(id,nome_));
+		 };
+		 
+		 for(CRUD registro: result) {
+			 System.out.println("| ID:"+registro.getId()+" | Nome: "+registro.getNome()+" | "); 
+		 }
 			
-			List<CRUD> result = new ArrayList<>();
-			
-			while (resultado.next()){
-				 int id = resultado.getInt("id");
-				 String nome_ = resultado.getString("nome");
-				 result.add(new CRUD(id,nome_));
-			 };
-			 
-			 for(CRUD registro: result) {
-				 System.out.println("| ID:"+registro.getId()+" | Nome: "+registro.getNome()+" | "); 
-			 }
-			
-		};
+		}
 	
-	//Consultar um Registro
 	public void consultarRegistrosQueContenham(String nome) throws SQLException {
 		
 		String SQL = "SELECT * FROM registros WHERE nome like ?";
@@ -125,7 +122,6 @@ public class CRUD {
 		
 	};
 	
-	//Consultar Registros pelo ID
 	public void consultarRegistroPeloId(int id) throws SQLException {
 		
 		String SQL = "SELECT * FROM registros WHERE id=?";
@@ -149,7 +145,6 @@ public class CRUD {
 		
 	};
 	
-	//Alterar o registro somente pelo ID
 	public void alterarRegistro(int id, String nomeAlterado) throws SQLException {
 		
 		 String SQL = "UPDATE registros SET nome=? WHERE id=? ";
@@ -173,18 +168,15 @@ public class CRUD {
 		 consultarTodosOsRegistros(); 
 	}
 
-	//Excluir todos os Registros
-		public String ExcluirTodosOsRegistros() throws SQLException {
-		
-			String SQL="TRUNCATE TABLE registros";
-			Statement stmt = conexao.createStatement();
-			stmt.execute(SQL);
-			consultarTodosOsRegistros();
-			return "\nTODOS OS REGISTROS FORAM EXCLUIDOS!";
-		}
-
+	public String ExcluirTodosOsRegistros() throws SQLException {
 	
-	//Deletar a tabela
+		String SQL="TRUNCATE TABLE registros";
+		Statement stmt = conexao.createStatement();
+		stmt.execute(SQL);
+		consultarTodosOsRegistros();
+		return "\nTODOS OS REGISTROS FORAM EXCLUIDOS!";
+	}
+
 	public String DeletarTabela() throws SQLException {
 		
 		String SQl = "DROP TABLE registros";
@@ -193,14 +185,12 @@ public class CRUD {
 		return "\nA TABELA FOI DELETADA!"; 	
 	}
 	
-	//Fechando Conexão
-	public String fecharConexao() {
+	public void fecharConexao() {
 		try {
-			this.conexao.close();
-			return "PROGRAMA FINALIZADO!";
-		} catch (SQLException e) {
+			this.conexao.close();		
+			} catch (SQLException e) {
 			this.conexao = null;
-			return "PROGRAMA FINALIZADO!";
+
 		}
 	}
 	

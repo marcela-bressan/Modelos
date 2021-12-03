@@ -11,10 +11,9 @@ public class FabricaDeConexao {
 	public static Connection getConexao(){
 		
 		try {
-			//Carregando usando o método de leitura
-			Properties propriedades = getProperties();
 			
-			//passar o caminho indicando chave-valor
+			Properties propriedades = getProperties();
+	
 			String url = propriedades.getProperty("banco.url");
 			String usuario = propriedades.getProperty("banco.usuario");
 			String senha = propriedades.getProperty("banco.senha");
