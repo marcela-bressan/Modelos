@@ -1,4 +1,4 @@
-package streamAPI.reduce;
+package excecao;
 
 import java.util.Objects;
 

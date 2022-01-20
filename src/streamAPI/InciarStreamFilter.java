@@ -17,7 +17,7 @@ public class InciarStreamFilter {
 		
 		st_lista.map(i -> i.equals(3));
 		
-		st_lista.reduce(0, (x,y) -> x+y);
+		//st_lista.reduce(0, (x,y) -> x+y);
 		
 		
 		

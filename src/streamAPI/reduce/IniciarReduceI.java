@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BinaryOperator;
 
-public class IniciarReducei {
+public class IniciarReduceI {
 	public static void main(String[] args) {
 		
 		List<Double> notas = Arrays.asList(5.5,8.9,3.8,7.8,5.5,6.7,7.8,8.9,9.7);
